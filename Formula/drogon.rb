@@ -5,12 +5,13 @@ class Drogon < Formula
   desc "HTTP(S) Web Application Framework (C++14/17 based)"
   homepage "https://drogon.docsforge.com"
   license "MIT"
-  url "https://github.com/an-tao/drogon/archive/refs/tags/v1.5.1.tar.gz"
-  sha256 "59e8537be6ad4b9fd39412e90da2d1aa4987fe868ad3b97dfc55671bfdee69f8"
+  url "https://github.com/an-tao/drogon/archive/refs/tags/v1.6.0.tar.gz"
+  sha256 "9f8802b579aac29e9eddfb156e432276727a3d3c49fffdf453a2ddcd1cb69093"
+  head "https://github.com/an-tao/drogon.git"
 
   resource "trantor" do
     url "https://github.com/an-tao/trantor.git",
-        revision: "a3cb939ef237b83b5bd8d9c87f1dec6899c54054" 
+        revision: "941dc48384bd14a2b6a14f3a0dba7b7453d91ed5"
   end
 
   depends_on "cmake" => :build
