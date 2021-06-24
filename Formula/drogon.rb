@@ -5,8 +5,8 @@ class Drogon < Formula
   desc "HTTP(S) Web Application Framework (C++14/17 based)"
   homepage "https://drogon.docsforge.com"
   license "MIT"
-  url "https://github.com/an-tao/drogon/archive/refs/tags/v1.7.0.tar.gz"
-  sha256 "1c8cf1602c55bb8bf382104600c1f5f027932c2b30d6a844cb588d23242c0472"
+  url "https://github.com/an-tao/drogon/archive/refs/tags/v1.7.1.tar.gz"
+  sha256 "a0bce1f32b6e1321486bb25c55ca7bd7a577cbd53f1e7be47367d0f9733730f1"
   head "https://github.com/an-tao/drogon.git"
 
   resource "trantor" do
