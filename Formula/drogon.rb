@@ -20,6 +20,8 @@ class Drogon < Formula
   end
 
   def install
+    # TODO: Verify Parallelization - https://github.com/drogonframework/homebrew-drogon/issues/4
+    # head gets trantor as a git submodule
     (buildpath/"trantor").install resource("trantor")
     system "cmake", "-B", "build", "-DOPENSSL_ROOT_DIR=#{Formula["openssl@1.1"].opt_prefix}", *std_cmake_args
     system "cmake", "--build", "build"
