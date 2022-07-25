@@ -1,0 +1,34 @@
+name: Homebrew
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  formula:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-11
+          - macos-12
+          # FIXME: -- Found UUID: /home/linuxbrew/.linuxbrew/lib/libuuid.so
+          # CMake Error at CMakeLists.txt:218 (message):
+          #   uuid lib error
+          # - ubuntu-18.04
+          # - ubuntu-20.04
+          # - ubuntu-22.04
+        formula: [ drogon ]
+    steps:
+    - uses: actions/checkout@v3
+    - run: brew update
+    - run: brew install --build-from-source --debug --verbose ./Formula/${{ matrix.formula }}.rb
+    # - run: brew test Formula/${{ matrix.formula }}.rb TODO: Add tests
+    # FIXME: Error: Files were found with references to the Homebrew shims directory.
+    # The offending files are:
+    #   bin/drogon_ctl
+    #   lib/libdrogon.a
+    # - run: brew audit --strict Formula/${{ matrix.formula }}.rb
