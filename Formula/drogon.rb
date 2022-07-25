@@ -7,7 +7,7 @@ class Drogon < Formula
   license "MIT"
   url "https://github.com/drogonframework/drogon/archive/refs/tags/v1.7.2.tar.gz"
   sha256 "a682fafc3619ba69d3d9278a80f6a386d1effcc3692b47e976de7cf9ff89d6b8"
-  head "https://github.com/an-tao/drogon.git"
+  head "https://github.com/drogonframework/drogon.git"
 
   resource "trantor" do
     url "https://github.com/an-tao/trantor.git",
