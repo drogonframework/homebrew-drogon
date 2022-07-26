@@ -1,6 +1,6 @@
 # Drogon Homebrew Formula
 
-## Installation using tap
+## Installation Using `brew tap`
 
 ```bash
 $ brew tap drogonframework/drogon
