@@ -7,7 +7,7 @@ $ brew tap drogonframework/drogon
 $ brew install drogon
 ```
 
-## Installation without tap
+## Installation Without `brew tap`
 
 ```bash
 $ brew install drogonframework/drogon/drogon
