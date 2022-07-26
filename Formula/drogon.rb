@@ -29,15 +29,20 @@ class Drogon < Formula
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! For Homebrew/homebrew-core
-    # this will need to be a test that verifies the functionality of the
-    # software. Run the test with `brew test drogon`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "false"
+    system bin/"dg_ctl", "create", "project", "hello"
+    cd "hello" do
+      system "cmake", "-B", "build", "-DOPENSSL_ROOT_DIR=#{Formula["openssl@1.1"].opt_prefix}"
+      system "cmake", "--build", "build"
+
+      begin
+        pid = fork { exec "build/hello" }
+        sleep 1
+        result = shell_output("curl -s 127.0.0.1")
+        assert_match "<hr><center>drogon", result
+      ensure
+        Process.kill("SIGINT", pid)
+        Process.wait(pid)
+      end
+    end
   end
 end
