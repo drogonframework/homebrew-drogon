@@ -12,13 +12,12 @@ class Drogon < Formula
   depends_on "brotli"
   depends_on "c-ares"
   depends_on "jsoncpp"
-  depends_on "openssl@1.1"
   depends_on "ossp-uuid"
   depends_on "zlib"
 
   def install
     # TODO: Verify Parallelization - https://github.com/drogonframework/homebrew-drogon/issues/4
-    system "cmake", "-B", "build", "-DOPENSSL_ROOT_DIR=#{Formula["openssl@1.1"].opt_prefix}", *std_cmake_args
+    system "cmake", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end
@@ -26,7 +25,7 @@ class Drogon < Formula
   test do
     system bin/"dg_ctl", "create", "project", "hello"
     cd "hello" do
-      system "cmake", "-B", "build", "-DOPENSSL_ROOT_DIR=#{Formula["openssl@1.1"].opt_prefix}"
+      system "cmake", "-B", "build"
       system "cmake", "--build", "build"
 
       begin
