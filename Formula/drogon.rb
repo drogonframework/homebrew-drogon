@@ -1,5 +1,5 @@
 class Drogon < Formula
-  desc "HTTP(S) Web Application Framework (C++14/17 based)"
+  desc "A modern C++ web application framework. Fast, easy to use, feature-rich and cross-platform"
   homepage "https://drogon.org"
   # pull from git tag to get submodules
   url "https://github.com/drogonframework/drogon.git",
