@@ -3,8 +3,8 @@ class Drogon < Formula
   homepage "https://drogon.org"
   # pull from git tag to get submodules
   url "https://github.com/drogonframework/drogon.git",
-      tag:      "v1.8.6",
-      revision: "f361995035bac47cbae76fb12d9f2f0fa3ef28dc"
+      tag:      "v1.8.7.rc1",
+      revision: "366311c19686eb31601d19d74618b8250da33c88"
   license "MIT"
   head "https://github.com/drogonframework/drogon.git"
 
@@ -16,7 +16,13 @@ class Drogon < Formula
   depends_on "zlib"
 
   def install
-    system "cmake", "-B", "build", *std_cmake_args
+    cmake_args = std_cmake_args
+    if OS.linux?
+      cmake_args << "-DUUID_LIBRARIES=uuid"
+      cmake_args << "-DUUID_INCLUDE_DIRS=#{Formula["ossp-uuid"].opt_include}/ossp"
+    end
+
+    system "cmake", "-B", "build", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end
@@ -30,7 +36,7 @@ class Drogon < Formula
       begin
         pid = fork { exec "build/hello" }
         sleep 1
-        result = shell_output("curl -s 127.0.0.1")
+        result = shell_output("curl -s 127.0.0.1:5555")
         assert_match "<hr><center>drogon", result
       ensure
         Process.kill("SIGINT", pid)
