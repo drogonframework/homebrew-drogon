@@ -14,6 +14,7 @@ jobs:
         os:
           - macos-11
           - macos-12
+          - macos-13
           # FIXME: -- Found UUID: /home/linuxbrew/.linuxbrew/lib/libuuid.so
           # CMake Error at CMakeLists.txt:218 (message):
           #   uuid lib error
