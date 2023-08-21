@@ -26,8 +26,4 @@ jobs:
     - run: brew update
     - run: brew install --build-from-source --debug --verbose ./Formula/drogon.rb
     - run: brew test Formula/drogon.rb
-    # FIXME: Error: Files were found with references to the Homebrew shims directory.
-    # The offending files are:
-    #   bin/drogon_ctl
-    #   lib/libdrogon.a
-    # - run: brew audit --strict Formula/drogon.rb
+    - run: brew audit --verbose --strict drogon
