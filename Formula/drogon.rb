@@ -16,7 +16,6 @@ class Drogon < Formula
   depends_on "zlib"
 
   def install
-    # TODO: Verify Parallelization - https://github.com/drogonframework/homebrew-drogon/issues/4
     system "cmake", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
