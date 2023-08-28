@@ -15,15 +15,33 @@ jobs:
           - macos-11
           - macos-12
           - macos-13
-          # FIXME: -- Found UUID: /home/linuxbrew/.linuxbrew/lib/libuuid.so
-          # CMake Error at CMakeLists.txt:218 (message):
-          #   uuid lib error
-          # - ubuntu-18.04
-          # - ubuntu-20.04
-          # - ubuntu-22.04
+          - ubuntu-20.04
+          - ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
-    - run: brew update
-    - run: brew install --build-from-source --debug --verbose ./Formula/drogon.rb
-    - run: brew test Formula/drogon.rb
-    - run: brew audit --verbose --strict drogon
+
+    - name: brew update
+      run: |
+        [ -d "/home/linuxbrew/.linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        brew update
+
+    - name: brew install
+      run: |
+        [ -d "/home/linuxbrew/.linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        brew install --build-from-source --debug --verbose ./Formula/drogon.rb
+
+    - name: brew link binutils
+      if: matrix.os == 'ubuntu-20.04'
+      run: |
+        [ -d "/home/linuxbrew/.linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        brew link --force binutils
+
+    - name: brew test
+      run: |
+        [ -d "/home/linuxbrew/.linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        brew test --verbose Formula/drogon.rb
+
+    - name: brew audit
+      run: |
+        [ -d "/home/linuxbrew/.linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        brew audit --verbose --strict drogon
