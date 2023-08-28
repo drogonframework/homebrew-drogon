@@ -30,6 +30,7 @@ jobs:
         [ -d "/home/linuxbrew/.linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         brew install --build-from-source --debug --verbose ./Formula/drogon.rb
 
+    # ref: https://github.com/Homebrew/homebrew-core/issues/135068#issuecomment-1608783869
     - name: brew link binutils
       if: matrix.os == 'ubuntu-20.04'
       run: |
