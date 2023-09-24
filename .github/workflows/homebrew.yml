@@ -28,7 +28,7 @@ jobs:
     - name: brew install
       run: |
         [ -d "/home/linuxbrew/.linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        brew install --build-from-source --debug --verbose ./Formula/drogon.rb
+        HOMEBREW_NO_INSTALL_FROM_API=1 brew install --build-from-source --debug --verbose ./Formula/drogon.rb
 
     # ref: https://github.com/Homebrew/homebrew-core/issues/135068#issuecomment-1608783869
     - name: brew link binutils
@@ -46,3 +46,4 @@ jobs:
       run: |
         [ -d "/home/linuxbrew/.linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         brew audit --verbose --strict drogon
+        brew audit --verbose --new drogon
