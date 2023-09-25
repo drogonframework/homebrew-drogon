@@ -6,7 +6,7 @@ class Drogon < Formula
       tag:      "v1.9.0-rc.1",
       revision: "94ca651cbdbdf4038bc0392bcf2d897661996f7c"
   license "MIT"
-  head "https://github.com/drogonframework/drogon.git"
+  head "https://github.com/drogonframework/drogon.git", branch: "master"
 
   depends_on "cmake" => :build
   depends_on "brotli"
