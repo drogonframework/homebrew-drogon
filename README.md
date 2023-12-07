@@ -1,5 +1,8 @@
 # Drogon Homebrew Formula
 
+> [!NOTE]  
+> This formula has been [merged into homebrew-core](https://github.com/Homebrew/homebrew-core/pull/152693) and can now be installed by `brew install drogon`.
+
 ## Installation Using `brew tap`
 
 ```bash
